@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: e909d276f6b0a2c408224d9d03cb3d36
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6230369676136674700
+    second: Exhaust-0001_0
+  - first:
+      213: -9221439825253541125
+    second: Exhaust-0001_1
+  - first:
+      213: -3272456313934367945
+    second: Exhaust-0001_2
+  - first:
+      213: -7428918932636624698
+    second: Exhaust-0001_3
+  - first:
+      213: 6088119112912938852
+    second: Exhaust-0001_4
+  - first:
+      213: 9183524661457430884
+    second: Exhaust-0001_5
+  - first:
+      213: -2059912117356377819
+    second: Exhaust-0001_6
+  - first:
+      213: 1136091107478352327
+    second: Exhaust-0001_7
+  - first:
+      213: -1976934264753611653
+    second: Exhaust-0001_8
+  - first:
+      213: -5146408396182515060
+    second: Exhaust-0001_9
+  - first:
+      213: 2071913719823162364
+    second: Exhaust-0001_10
+  - first:
+      213: 5471646587958904409
+    second: Exhaust-0001_11
+  - first:
+      213: -6849660205081451745
+    second: Exhaust-0001_12
+  - first:
+      213: 8316880084055670866
+    second: Exhaust-0001_13
+  - first:
+      213: -5698946839270124458
+    second: Exhaust-0001_14
+  - first:
+      213: 4962182159532490143
+    second: Exhaust-0001_15
+  - first:
+      213: 1095020979266101021
+    second: Exhaust-0001_16
+  - first:
+      213: 1872386129822422639
+    second: Exhaust-0001_17
+  - first:
+      213: -3514022322322360975
+    second: Exhaust-0001_18
+  - first:
+      213: 5823151738032536926
+    second: Exhaust-0001_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Exhaust-0001_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 104
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c85fd75e538b67650800000000000000
+      internalID: 6230369676136674700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 104
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa5f12165dd60080800000000000000
+      internalID: -9221439825253541125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 104
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73335f81256e592d0800000000000000
+      internalID: -3272456313934367945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 104
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c81503479d27e890800000000000000
+      internalID: -7428918932636624698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_4
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 73
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4672173b3185d7450800000000000000
+      internalID: 6088119112912938852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_5
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 73
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 469a530f50f627f70800000000000000
+      internalID: 9183524661457430884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_6
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 73
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5294378d7d8b963e0800000000000000
+      internalID: -2059912117356377819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 73
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c13abdc7d434cf00800000000000000
+      internalID: 1136091107478352327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_8
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 42
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c101da2c48094e0800000000000000
+      internalID: -1976934264753611653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_9
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 42
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82147c94d84498b0800000000000000
+      internalID: -5146408396182515060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_10
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 42
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb515bfc8ae0cc10800000000000000
+      internalID: 2071913719823162364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_11
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 42
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 956c4cbe4913feb40800000000000000
+      internalID: 5471646587958904409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_12
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 42
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f13adf3a55e11f0a0800000000000000
+      internalID: -6849660205081451745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_13
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 42
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 250c8a92f5e7b6370800000000000000
+      internalID: 8316880084055670866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_14
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 42
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65418734b0649e0b0800000000000000
+      internalID: -5698946839270124458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_15
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 42
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9df6b122663dd440800000000000000
+      internalID: 4962182159532490143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_16
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 9
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1f91ca67cb423f00800000000000000
+      internalID: 1095020979266101021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_17
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 11
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f661f66c34d0cf910800000000000000
+      internalID: 1872386129822422639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_18
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 11
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 175be21e05fab3fc0800000000000000
+      internalID: -3514022322322360975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exhaust-0001_19
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 8
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5db0a247adffc050800000000000000
+      internalID: 5823151738032536926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Exhaust-0001_0: 6230369676136674700
+      Exhaust-0001_1: -9221439825253541125
+      Exhaust-0001_10: 2071913719823162364
+      Exhaust-0001_11: 5471646587958904409
+      Exhaust-0001_12: -6849660205081451745
+      Exhaust-0001_13: 8316880084055670866
+      Exhaust-0001_14: -5698946839270124458
+      Exhaust-0001_15: 4962182159532490143
+      Exhaust-0001_16: 1095020979266101021
+      Exhaust-0001_17: 1872386129822422639
+      Exhaust-0001_18: -3514022322322360975
+      Exhaust-0001_19: 5823151738032536926
+      Exhaust-0001_2: -3272456313934367945
+      Exhaust-0001_3: -7428918932636624698
+      Exhaust-0001_4: 6088119112912938852
+      Exhaust-0001_5: 9183524661457430884
+      Exhaust-0001_6: -2059912117356377819
+      Exhaust-0001_7: 1136091107478352327
+      Exhaust-0001_8: -1976934264753611653
+      Exhaust-0001_9: -5146408396182515060
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

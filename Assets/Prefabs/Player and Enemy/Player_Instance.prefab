@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6686936830300285944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7357301430256010644}
+  - component: {fileID: 3871056924113351975}
+  m_Layer: 0
+  m_Name: Player_Instance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7357301430256010644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6686936830300285944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.97, y: -1.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3871056924113351975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6686936830300285944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d07b3e8dc88c54788b59cd962a24ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
+  localPlayerId: 0
+  player1GameObject: {fileID: 5450958513856096616, guid: fe41df380c8b4cc41944592e8f003be0, type: 3}
+  player2GameObject: {fileID: 3729630761442860913, guid: 75d10cb92f918ee4f8686cefb274a30b, type: 3}
+  player1Visuals: {fileID: 5450958513856096616, guid: fe41df380c8b4cc41944592e8f003be0, type: 3}
+  player2Visuals: {fileID: 3729630761442860913, guid: 75d10cb92f918ee4f8686cefb274a30b, type: 3}
+  player1Explosion: {fileID: 3540100099787610179, guid: c94770ed942856b4fa311260dae4524a, type: 3}
+  player2Explosion: {fileID: 3540100099787610179, guid: c94770ed942856b4fa311260dae4524a, type: 3}
+  player1BulletPrefab: {fileID: 5638399730752535662, guid: b0cefdf8f41cb594fb8e73f196542f0e, type: 3}
+  player2BulletPrefab: {fileID: 5602548236912456787, guid: 39223c6c39112eb4bab22a8a540775e3, type: 3}
+  player1BulletSpawner: {fileID: 8406127329136719807, guid: fe41df380c8b4cc41944592e8f003be0, type: 3}
+  player2BulletSpawner: {fileID: 3526553091076612155, guid: 75d10cb92f918ee4f8686cefb274a30b, type: 3}
+  moveSpeed: 5
+  bulletSpeed: 10
+  playerMaxHealth: 3
+  explosionDuration: 0.6

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - InvisibleWall
+  - InvisibleWall2
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: 1
+    uniqueID: 2464989051
+    locked: 0
+  - name: 2
+    uniqueID: 3668003683
+    locked: 0
+  - name: 3
+    uniqueID: 1887371949
+    locked: 0
+  - name: 4
+    uniqueID: 2420478875
+    locked: 0
+  - name: 5
+    uniqueID: 1959137659
+    locked: 0
+  m_RenderingLayers:
+  - Default
