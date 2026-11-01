@@ -8,6 +8,8 @@ using TMPro;
 
 public class NetworkMainMenuController : NetworkBehaviour
 {
+    public static bool IsReturningFromGame = false;
+
     [Header("Menu UI Panels")]
     [SerializeField] private GameObject titleScreenPanel; // title screen panel
     [SerializeField] private GameObject hostAndClientButtonsPanel; // host and client buttons panel
@@ -37,10 +39,32 @@ public class NetworkMainMenuController : NetworkBehaviour
 
     void Start()
     {
-        InitializeMenuState();
+        Time.timeScale = 1f;
+
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
+
+        // Check if we just returned from a match
+        if (IsReturningFromGame)
+        {
+            IsReturningFromGame = false; // Reset flag
+            InitializeMenuState();
+            TransitionToHostAndClientMenu(); // Lands right on the Host/Client buttons cleanly!
+        }
+        else
+        {
+            InitializeMenuState();
+        }
+
+        if (StatusField != null) StatusField.text = "";
 
         if (NetworkManager.Singleton != null)
         {
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnected;
+
             NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
             NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
         }
@@ -108,6 +132,9 @@ public class NetworkMainMenuController : NetworkBehaviour
     {
         SetMenuPanelActive(titleScreenPanel, false);
         SetMenuPanelActive(hostAndClientButtonsPanel, true);
+        SetMenuPanelActive(clientPanel, false);
+        SetMenuPanelActive(loadingScreenPanel, false);
+        SetMenuPanelActive(loadingAnimation, false);
     }
 
     private void SetMenuPanelActive(GameObject panel, bool isActive)
@@ -133,9 +160,12 @@ public class NetworkMainMenuController : NetworkBehaviour
         {
             NetworkManager.Singleton.Shutdown();
         }
-
+        
+        SetMenuPanelActive(titleScreenPanel, false);
         SetMenuPanelActive(hostAndClientButtonsPanel, false);
         SetMenuPanelActive(clientPanel, true);
+        SetMenuPanelActive(loadingScreenPanel, false);
+        SetMenuPanelActive(loadingAnimation, false);
 
         if (IPInputField != null)
         {
@@ -159,6 +189,7 @@ public class NetworkMainMenuController : NetworkBehaviour
         {
             SetMenuPanelActive(startGameButton.gameObject, false);
         }
+        
         SetMenuPanelActive(loadingAnimation, true);
 
         RequestStartGameRpc();
@@ -347,6 +378,12 @@ public class NetworkMainMenuController : NetworkBehaviour
     private void OnClientDisconnected(ulong clientId)
     {
         UpdateHostUIState();
+
+        // If we are intentionally returning from game or shut down, don't flash error states
+        if (IsReturningFromGame || NetworkManager.Singleton == null || !NetworkManager.Singleton.IsListening)
+        {
+            return;
+        }
 
         if (NetworkManager.Singleton != null && NetworkManager.Singleton.LocalClientId == clientId)
         {

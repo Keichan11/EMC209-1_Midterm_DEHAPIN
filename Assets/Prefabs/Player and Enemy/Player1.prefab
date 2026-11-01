@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5248257684009993495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player1Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2399441344040695795}
   - component: {fileID: 6762729008214787873}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpaceShips_Player-0001_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777376895819772054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player1BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074949744282611396}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player1Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,8 +201,11 @@ GameObject:
   - component: {fileID: 5415896625407083181}
   - component: {fileID: 8159062843415779770}
   - component: {fileID: 8341684271919205465}
+  - component: {fileID: 673392771712897423}
   - component: {fileID: 1705469573117194188}
-  m_Layer: 0
+  - component: {fileID: 8646477170122486930}
+  - component: {fileID: 833034271445969129}
+  m_Layer: 6
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -218,7 +221,7 @@ Transform:
   m_GameObject: {fileID: 5450958513856096616}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,6 +329,33 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.18555784, y: 0}
   m_Radius: 0.4224887
+--- !u!114 &673392771712897423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450958513856096616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 938302795
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &1705469573117194188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +368,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6542193aab3feb4e9258e4cf71170b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionRelay
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &8646477170122486930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450958513856096616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkTransform
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
+  AutoOwnerAuthorityTickOffset: 1
+  PositionInterpolationType: 0
+  RotationInterpolationType: 0
+  ScaleInterpolationType: 0
+  PositionLerpSmoothing: 1
+  PositionMaxInterpolationTime: 0.1
+  RotationLerpSmoothing: 1
+  RotationMaxInterpolationTime: 0.1
+  ScaleLerpSmoothing: 1
+  ScaleMaxInterpolationTime: 0.1
+  AuthorityMode: 1
+  TickSyncChildren: 0
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
+  Interpolate: 0
+  SlerpPosition: 0
+--- !u!114 &833034271445969129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450958513856096616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d07b3e8dc88c54788b59cd962a24ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
+  ShowTopMostFoldoutHeaderGroup: 1
+  networkPlayerID: 0
+  player1GameObject: {fileID: 5450958513856096616}
+  player2GameObject: {fileID: 0}
+  player1Visuals: {fileID: 2279563425156510386}
+  player2Visuals: {fileID: 0}
+  player1Explosion: {fileID: 5409397228808871968}
+  player2Explosion: {fileID: 0}
+  player1BulletPrefab: {fileID: 5638399730752535662, guid: b0cefdf8f41cb594fb8e73f196542f0e, type: 3}
+  player2BulletPrefab: {fileID: 0}
+  player1BulletSpawner: {fileID: 777376895819772054}
+  player2BulletSpawner: {fileID: 0}
+  moveSpeed: 5
+  bulletSpeed: 10
+  playerMaxHealth: 3
+  explosionDuration: 0.6
 --- !u!1001 &5819871155679805457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -391,6 +496,10 @@ PrefabInstance:
       value: PlayerExhaust_Top
       objectReference: {fileID: 0}
     - target: {fileID: 2468441416311867652, guid: d5e4e87be0f3c154eb1aba0e299cd7ed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468441416311867652, guid: d5e4e87be0f3c154eb1aba0e299cd7ed, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -415,6 +524,10 @@ PrefabInstance:
     - target: {fileID: 1348118549622987055, guid: 2eabebea98cf59b40a90d6beca03b003, type: 3}
       propertyPath: m_Name
       value: PlayerExhaust_Bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348118549622987055, guid: 2eabebea98cf59b40a90d6beca03b003, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1348118549622987055, guid: 2eabebea98cf59b40a90d6beca03b003, type: 3}
       propertyPath: m_IsActive
@@ -481,6 +594,10 @@ PrefabInstance:
     - target: {fileID: 3540100099787610179, guid: c94770ed942856b4fa311260dae4524a, type: 3}
       propertyPath: m_Name
       value: PlayerExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540100099787610179, guid: c94770ed942856b4fa311260dae4524a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4555431637524256554, guid: c94770ed942856b4fa311260dae4524a, type: 3}
       propertyPath: m_LocalScale.x

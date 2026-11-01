@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - InvisibleWall
   - InvisibleWall2
+  - Player1HealthBar
+  - Player2HealthBar
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player 1 Layer
+  - Player 2 Layer
   - 
   - 
   - 

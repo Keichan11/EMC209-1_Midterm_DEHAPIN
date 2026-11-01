@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance { get; private set; }
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game State")]
     private int activeEnemyCount = 0; // variable for current Enemy count
-    private int alivePlayers = 1; // total active players, set to 2 for 2 players
+    private int alivePlayers = 2; // total active players, set to 2 for 2 players
     private bool isGameOver = false; 
 
     void Awake()
@@ -29,10 +30,14 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void Start()
+    public override void OnNetworkSpawn()
     {
         SetWinLosePanel();
-        GetEnemyCount();
+        if (IsServer) 
+        {
+            GetEnemyCount();
+        }
+        
         Time.timeScale = 1f; // set to 1f everytime the MainGameScene gets loaded
     }
 
@@ -52,6 +57,8 @@ public class GameManager : MonoBehaviour
     // method to decrease current enemy count and trigger Win
     public void UnregisterEnemy()
     {
+        if (!IsServer) return;
+
         if (isGameOver) return;
 
         activeEnemyCount--;
@@ -65,6 +72,8 @@ public class GameManager : MonoBehaviour
     // method to decrease player count and trigger Lose
     public void RegisterPlayerDeath()
     {
+        if (!IsServer) return;
+        
         if (isGameOver) return;
 
         alivePlayers--;
@@ -78,27 +87,39 @@ public class GameManager : MonoBehaviour
     // trigger Player Win method
     public void TriggerWin()
     {
+        if (!IsServer) return;
+
         if (isGameOver) return;
         isGameOver = true;
 
         // wait 0.7f before freezing so Enemy/Player explosions can finish playing
-        StartCoroutine(ShowEndGameSequence(winPanel, 0.7f));
+        StartCoroutine(ShowEndGameSequence(true, 0.7f));
     }
 
     // trigger Player Lose method
     public void TriggerLose()
     {
+        if (!IsServer) return;
+
         if (isGameOver) return;
         isGameOver = true;
 
         // wait 0.7f before freezing so death explosion can finish playing
-        StartCoroutine(ShowEndGameSequence(losePanel, 0.7f));
+        StartCoroutine(ShowEndGameSequence(false, 0.7f));
     }
 
     // delay sequence allowing explosion animations to complete before setting timeScale = 0
-    private IEnumerator ShowEndGameSequence(GameObject panelToShow, float delaySeconds)
+    private IEnumerator ShowEndGameSequence(bool isWin, float delaySeconds)
     {
         yield return new WaitForSeconds(delaySeconds);
+
+        ShowEndGameUIClientRpc(isWin);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void ShowEndGameUIClientRpc(bool isWin)
+    {
+        GameObject panelToShow = isWin ? winPanel : losePanel;
 
         if (panelToShow != null) panelToShow.SetActive(true);
         Time.timeScale = 0f; // freeze game after the explosion finishes
@@ -107,14 +128,30 @@ public class GameManager : MonoBehaviour
     // Main Menu Button OnClick() event
     public void LoadMainMenu()
     {
+        //LoadMainMenuServerRpc();   
+        // Shut down the network session cleanly for everyone
+
         Time.timeScale = 1f; // unpauses gameplay time before switching scenes
-        SceneManager.LoadScene("MainMenuScene"); 
+
+        NetworkMainMenuController.IsReturningFromGame = true;
+
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
+
+        // Load the Main Menu scene directly
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     // Retry/Restart Button OnClick() event (To be USED, currently UNUSED)
     public void RestartLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if(IsServer)
+        {
+            NetworkManager.Singleton.SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
     }
 }

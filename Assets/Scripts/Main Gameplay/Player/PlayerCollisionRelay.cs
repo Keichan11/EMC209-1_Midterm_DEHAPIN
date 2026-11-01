@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerCollisionRelay : MonoBehaviour
+public class PlayerCollisionRelay : NetworkBehaviour
 {
     private PlayerBehaviour playerBehaviour;
 
@@ -11,6 +12,8 @@ public class PlayerCollisionRelay : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!IsServer) return;
+
         if (collision.CompareTag("Enemy"))
         {
             if (playerBehaviour != null)

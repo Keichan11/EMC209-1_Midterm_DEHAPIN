@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
+public class Bomb_Behaviour : NetworkBehaviour, IEnemyDamageable
 {
     [Header("References")]
     [SerializeField] private GameObject bombVisuals; // visuals of bomb
@@ -20,19 +21,25 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
     [Header("Bomb Explosion Settings")]
     [SerializeField] private float explosionDuration = 0.3f; // duration in seconds to wait for the explosion animation to finish before destroying the Bomb
 
-    void Start()
+    public override void OnNetworkSpawn()
     {
+        if (!IsServer) return;
+        
         SetBombExplosion(); 
     }
 
     void Update()
     {
+        if (!IsServer) return;
+
         MoveBomb();
     }
 
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!IsServer) return;
+
         HandleCollisionBomb(collision);
     }
 
@@ -57,6 +64,8 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
     // method called in player bullet script upon collision
     public void TakeDamage(int damageAmount)
     {
+        if (!IsServer) return;
+
         if (isBombExplode) return;
 
         // Ignore duplicate hits occurring in the exact same frame tick
@@ -79,7 +88,9 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
                 BombExplode();
                 break;
             case "InvisibleWall2":
-                Destroy(gameObject); // instantly destroys Enemy GameObject via collider outside camera view
+                NetworkObject netObj = GetComponent<NetworkObject>();
+                if (netObj != null) netObj.Despawn(true);
+                else Destroy(gameObject);
                 break;
             default:
                 break;
@@ -89,6 +100,8 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
     // calls a method under GameManager to decrease recorded enemy length 
     public void NotifyManagerOnDeath()
     {
+        if (!IsServer) return;
+
         if (hasUnregistered) return;
         hasUnregistered = true;
 
@@ -111,6 +124,15 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
             col.enabled = false; // enable false so colliders won't stay active when explosion animation is on
         }
 
+        ShowDeathVisualsCLientRpc();
+
+        // waits for the explosion animation to finish, then destroy the entire Bomb parent object (which includes everything in Bomb)
+        StartCoroutine(DestroySequence());
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void ShowDeathVisualsCLientRpc()
+    {
         // hides the bomb visuals (sprite with animation) so it won't be seen after the explosion animation started
         if (bombVisuals != null)
         {
@@ -122,9 +144,6 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
         {
             bombExplosion.SetActive(true);
         }
-
-        // waits for the explosion animation to finish, then destroy the entire Bomb parent object (which includes everything in Bomb)
-        StartCoroutine(DestroySequence());
     }
 
     void OnDestroy()
@@ -135,6 +154,15 @@ public class Bomb_Behaviour : MonoBehaviour, IEnemyDamageable
     IEnumerator DestroySequence()
     {
         yield return new WaitForSeconds(explosionDuration); // given duration for the Bomb Explosion set to Active before destrying the main parent Bomb GameObject
-        Destroy(gameObject);
+
+        NetworkObject netObj = GetComponent<NetworkObject>();
+        if (netObj != null && netObj.IsSpawned)
+        {
+            netObj.Despawn(true);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     } 
 }

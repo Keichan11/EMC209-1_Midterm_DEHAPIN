@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
+public class Enemy2_Behaviour : NetworkBehaviour, IEnemyDamageable
 {
     [Header("References")]
     [SerializeField] private GameObject enemySpaceshipVisuals; // visuals of Enemy
@@ -39,18 +40,24 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
     private float shiftDirection;
 
 
-    void Start()
+    public override void OnNetworkSpawn()
     {   
+        if (!IsServer) return;
+
         SpawnEnemy2Bullets();
     }
 
     void Update()
     {
+        if (!IsServer) return;
+
         MoveEnemy2();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!IsServer) return;
+
         HandleCollisionEnemy2(collision);
     }
 
@@ -159,6 +166,12 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
                 if (spawner != null)
                 {
                     GameObject bullet = Instantiate(enemy2BulletPrefab, spawner.position, enemy2BulletPrefab.transform.rotation); // to retain bullet prefab z rotation 'enemy2BulletPrefab.transform.rotation' instead of 'Quaternion.identity'
+                    NetworkObject bulletNetObj = bullet.GetComponent<NetworkObject>();
+
+                    if (bulletNetObj != null)
+                    {
+                        bulletNetObj.Spawn(true);
+                    }
 
                     // velocity to move to the left (-Vector2.right or -transform.right)
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -176,6 +189,8 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
     // method called in player bullet script upon collision
     public void TakeDamage(int damageAmount)
     {
+        if (!IsServer) return;
+
         if (isDeadEnemy2) return;
 
         // ignore duplicate hits occurring in the exact same frame tick
@@ -198,7 +213,9 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
                 Enemy2Death();
                 break;
             case "InvisibleWall2": // instantly destroys Enemy GameObject via collider outside camera view
-                Destroy(gameObject);
+                NetworkObject netObj = GetComponent<NetworkObject>();
+                if (netObj != null) netObj.Despawn(true);
+                else Destroy(gameObject);
                 break;
             default:
                 break;
@@ -208,6 +225,8 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
     // calls a method under GameManager to decrease recorded enemy length
     public void NotifyManagerOnDeath()
     {
+        if (!IsServer) return;
+
         if (hasUnregistered) return;
         hasUnregistered = true;
 
@@ -233,6 +252,15 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
         // stop shooting coroutines immediately
         StopAllCoroutines();
 
+        ShowDeathVisualsCLientRpc();
+
+        // waits for the explosion animation to finish, then destroy the entire Enemy1 parent object (which includes everything in Enemy 2)
+        StartCoroutine(DestroySequence());
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void ShowDeathVisualsCLientRpc()
+    {
         // hides the spaceship visuals (sprite, exhausts, spawner) so it won't be seen after the explosion animation started
         if (enemySpaceshipVisuals != null)
         {
@@ -244,9 +272,6 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
         {
             enemyExplosion.SetActive(true);
         }
-
-        // waits for the explosion animation to finish, then destroy the entire Enemy1 parent object (which includes everything in Enemy 2)
-        StartCoroutine(DestroySequence());
     }
 
     void OnDestroy()
@@ -257,6 +282,15 @@ public class Enemy2_Behaviour : MonoBehaviour, IEnemyDamageable
     IEnumerator DestroySequence()
     {
         yield return new WaitForSeconds(explosionDuration); // given duration for the Enemy Explosion set to Active before destrying the main parent Enemy 2 GameObject
-        Destroy(gameObject);
+        
+        NetworkObject netObj = GetComponent<NetworkObject>();
+        if (netObj != null && netObj.IsSpawned)
+        {
+            netObj.Despawn(true);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     } 
 }

@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
+public class Enemy3_Behaviour : NetworkBehaviour, IEnemyDamageable
 {
     [Header("References")]
     [SerializeField] private GameObject enemySpaceshipVisuals; // visuals of Enemy
@@ -33,18 +34,25 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
 
     private bool isAttacking = false;
 
-    void Start()
+
+    public override void OnNetworkSpawn()
     {
+        if (!IsServer) return;
+
         SpawnEnemy3Bullets();
     }
 
     void Update()
     {
+        if (!IsServer) return;
+        
         MoveEnemy3();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!IsServer) return;
+        
         HandleCollisionEnemy3(collision);
     }
 
@@ -137,6 +145,13 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
                 Quaternion bulletRotation = Quaternion.Euler(0f, 0f, angle + 90f);
 
                 GameObject bullet = Instantiate(enemy3BulletPrefab, spawner.position, bulletRotation);
+                NetworkObject bulletNetObj = bullet.GetComponent<NetworkObject>();
+
+                if (bulletNetObj != null)
+                {
+                    bulletNetObj.Spawn(true);
+                }
+
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
                 if (rb != null)
@@ -151,6 +166,8 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
     // method called in player bullet script upon collision
     public void TakeDamage(int damageAmount)
     {
+        if (!IsServer) return;
+
         if (isDeadEnemy3) return;
 
         // ignore duplicate hits occurring in the exact same frame tick
@@ -173,7 +190,9 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
                 Enemy3Death();
                 break;
             case "InvisibleWall2":
-                Destroy(gameObject); // instantly destroys Enemy GameObject via collider outside camera view
+                NetworkObject netObj = GetComponent<NetworkObject>();
+                if (netObj != null) netObj.Despawn(true);
+                else Destroy(gameObject);
                 break;
             default:
                 break;
@@ -183,6 +202,8 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
     // calls a method under GameManager to decrease recorded enemy length
     public void NotifyManagerOnDeath()
     {
+        if (!IsServer) return;
+
         if (hasUnregistered) return;
         hasUnregistered = true;
 
@@ -194,6 +215,7 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
 
     void Enemy3Death()
     {
+        
         if (isDeadEnemy3) return;
         isDeadEnemy3 = true;
 
@@ -208,6 +230,15 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
         // stop shooting coroutines immediately
         StopAllCoroutines();
 
+        ShowDeathVisualsCLientRpc();
+
+        // waits for the explosion animation to finish, then destroy the entire Enemy1 parent object (which includes everything in Enemy 3)
+        StartCoroutine(DestroySequence());
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void ShowDeathVisualsCLientRpc()
+    {
         // hides the spaceship visuals (sprite, exhausts, spawner) so it won't be seen after the explosion animation started
         if (enemySpaceshipVisuals != null)
         {
@@ -218,9 +249,6 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
         {
             enemyExplosion.SetActive(true);
         }
-
-        // waits for the explosion animation to finish, then destroy the entire Enemy1 parent object (which includes everything in Enemy 3)
-        StartCoroutine(DestroySequence());
     }
 
     void OnDestroy()
@@ -231,6 +259,15 @@ public class Enemy3_Behaviour : MonoBehaviour, IEnemyDamageable
     IEnumerator DestroySequence()
     {
         yield return new WaitForSeconds(explosionDuration); // given duration for the Enemy Explosion set to Active before destrying the main parent Enemy 3 GameObject
-        Destroy(gameObject);
+        
+        NetworkObject netObj = GetComponent<NetworkObject>();
+        if (netObj != null && netObj.IsSpawned)
+        {
+            netObj.Despawn(true);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
